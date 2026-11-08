@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ONT | Powered by FoZoWo</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f4ff',
+                            100: '#e0e9ff',
+                            500: '#4f46e5',
+                            600: '#4338ca',
+                            700: '#3730a3',
+                            900: '#1e1b4b',
+                            accent: '#06b6d4',
+                            accentHover: '#0891b2'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .glass-header {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .hero-gradient {
+            background: radial-gradient(circle at 50% 20%, rgba(79, 70, 229, 0.25) 0%, rgba(15, 23, 42, 1) 70%);
+        }
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 25px -5px rgba(79, 70, 229, 0.15), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased overflow-x-hidden">
+
+    <!-- Header Navigation -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-header border-b border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Brand Logo (Header ont.png Integration) -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="p-1 rounded-xl bg-slate-900 border border-indigo-500/30 group-hover:border-indigo-500 transition-colors">
+                        <img src="ont.png" alt="ONT Logo" class="h-9 w-auto object-contain" onerror="this.onerror=null; this.src='https://placehold.co/120x40/4f46e5/ffffff?text=ONT';">
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-xl font-extrabold tracking-wider text-white flex items-center gap-1.5 leading-none mb-1">
+                            ONT <span class="text-[10px] px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 font-medium">FoZoWo</span>
+                        </span>
+                        <span class="text-[10px] text-slate-400 font-mono tracking-widest leading-none">fozowo.com</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center space-x-8 font-medium text-sm text-slate-300">
+                    <a href="#about" class="hover:text-cyan-400 transition-colors">ネットワーク概要</a>
+                    <a href="#services" class="hover:text-cyan-400 transition-colors">通信ソリューション</a>
+                    <a href="#media" class="hover:text-cyan-400 transition-colors">メディア・SNS</a>
+                </nav>
+
+                <!-- Header Actions & Socials -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <div class="flex items-center space-x-3">
+                        <a href="https://youtube.com/@tv_ont" target="_blank" rel="noopener" class="p-2 text-slate-400 hover:text-red-500 hover:bg-slate-800/60 rounded-lg transition-all" title="YouTube (@tv_ont)">
+                            <i data-lucide="youtube" class="w-5 h-5"></i>
+                        </a>
+                        <a href="https://instagram.com/tv_ont" target="_blank" rel="noopener" class="p-2 text-slate-400 hover:text-pink-500 hover:bg-slate-800/60 rounded-lg transition-all" title="Instagram (@tv_ont)">
+                            <i data-lucide="instagram" class="w-5 h-5"></i>
+                        </a>
+                        <a href="https://facebook.com/tvont" target="_blank" rel="noopener" class="p-2 text-slate-400 hover:text-blue-500 hover:bg-slate-800/60 rounded-lg transition-all" title="Facebook (@tvont)">
+                            <i data-lucide="facebook" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 focus:outline-none">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden border-b border-slate-800 bg-slate-900/95 backdrop-blur-lg px-4 pt-4 pb-6 space-y-4">
+            <a href="#about" class="block text-slate-300 hover:text-cyan-400 font-medium py-2">ネットワーク概要</a>
+            <a href="#services" class="block text-slate-300 hover:text-cyan-400 font-medium py-2">通信ソリューション</a>
+            <a href="#media" class="block text-slate-300 hover:text-cyan-400 font-medium py-2">メディア・SNS</a>
+            <div class="pt-4 border-t border-slate-800 flex items-center justify-around">
+                <a href="https://youtube.com/@tv_ont" target="_blank" rel="noopener" class="p-2 text-slate-400 hover:text-red-500">
+                    <i data-lucide="youtube" class="w-6 h-6"></i>
+                </a>
+                <a href="https://instagram.com/tv_ont" target="_blank" rel="noopener" class="p-2 text-slate-400 hover:text-pink-500">
+                    <i data-lucide="instagram" class="w-6 h-6"></i>
+                </a>
+                <a href="https://facebook.com/tvont" target="_blank" rel="noopener" class="p-2 text-slate-400 hover:text-blue-500">
+                    <i data-lucide="facebook" class="w-6 h-6"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-24 md:pt-44 md:pb-32 hero-gradient overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-xs sm:text-sm font-medium mb-8">
+                        <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+                        FoZoWo High-Speed Network Infrastructure
+                    </div>
+                    <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-tight mb-6">
+                        超高速・次世代通信<br>
+                        <span class="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-indigo-400 to-pink-500">
+                            ONT 光ネットワーク
+                        </span>
+                    </h1>
+                    <p class="text-lg text-slate-400 font-normal leading-relaxed mb-8">
+                        FoZoWo（fozowo.com）基盤を支える架空の次世代通信ネットワーク。安定した超低遅延データ通信と次世代メディア配信を実現します。
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <a href="#media" class="px-8 py-4 rounded-xl bg-gradient-to-r from-indigo-600 to-cyan-500 hover:from-indigo-500 hover:to-cyan-400 text-white font-bold text-base shadow-lg shadow-indigo-500/25 transition-all">
+                            公式メディア・SNSを見る
+                        </a>
+                    </div>
+                </div>
+
+                <!-- ONT Graphic / Image Showcase -->
+                <div class="flex justify-center items-center">
+                    <div class="relative w-full max-w-md p-6 bg-slate-900/60 border border-slate-800 rounded-3xl shadow-2xl backdrop-blur-sm text-center">
+                        <div class="absolute -top-4 -right-4 bg-cyan-500 text-slate-950 font-extrabold text-xs px-3 py-1.5 rounded-full shadow-lg">
+                            ONT BRAND
+                        </div>
+                        <img src="ont.png" alt="ONT Optical Network Terminal" class="w-full h-auto mx-auto max-h-64 object-contain rounded-xl drop-shadow-[0_10px_20px_rgba(79,70,229,0.3)] mb-4" onerror="this.onerror=null; this.src='https://placehold.co/400x250/1e1b4b/38bdf8?text=ONT.PNG';">
+                        <p class="text-sm font-mono text-cyan-300">FoZoWo Network Terminal Platform</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Decorative background shapes -->
+        <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gradient-to-br from-indigo-600/20 to-cyan-500/10 blur-3xl pointer-events-none rounded-full"></div>
+    </section>
+
+    <!-- KPI / Highlights Section -->
+    <section class="py-12 border-y border-slate-800/80 bg-slate-900/40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="p-4">
+                    <div class="text-3xl sm:text-4xl font-extrabold text-white mb-1">10 Gbps+</div>
+                    <div class="text-xs sm:text-sm text-slate-400 font-medium">高速バックボーン</div>
+                </div>
+                <div class="p-4">
+                    <div class="text-3xl sm:text-4xl font-extrabold text-cyan-400 mb-1">99.999%</div>
+                    <div class="text-xs sm:text-sm text-slate-400 font-medium">通信可動率</div>
+                </div>
+                <div class="p-4">
+                    <div class="text-3xl sm:text-4xl font-extrabold text-indigo-400 mb-1">&lt; 1 ms</div>
+                    <div class="text-xs sm:text-sm text-slate-400 font-medium">レイテンシー</div>
+                </div>
+                <div class="p-4">
+                    <div class="text-3xl sm:text-4xl font-extrabold text-pink-400 mb-1">FoZoWo</div>
+                    <div class="text-xs sm:text-sm text-slate-400 font-medium">インフラ基盤</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <h2 class="text-xs uppercase tracking-widest text-cyan-400 font-bold mb-2">Network Solutions</h2>
+                <p class="text-3xl sm:text-4xl font-bold text-white">ONTが提供するネットワーク基盤</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-slate-900/80 border border-slate-800 p-8 rounded-2xl card-hover relative overflow-hidden group">
+                    <div class="w-14 h-14 rounded-xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-all">
+                        <i data-lucide="network" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">光終端ネットワーク (ONT)</h3>
+                    <p class="text-slate-400 leading-relaxed text-sm">
+                        高速光通信回線を端末まで安定して配信。FoZoWoのデータセンターと直接連携した安定ネットワーク。
+                    </p>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="bg-slate-900/80 border border-slate-800 p-8 rounded-2xl card-hover relative overflow-hidden group">
+                    <div class="w-14 h-14 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center mb-6 group-hover:bg-cyan-500 group-hover:text-white transition-all">
+                        <i data-lucide="wifi" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">次世代ワイヤレス通信</h3>
+                    <p class="text-slate-400 leading-relaxed text-sm">
+                        大容量・高密度のデータ伝送に対応。広範囲なエリアをカバーするスマート通信ネットワークを展開。
+                    </p>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="bg-slate-900/80 border border-slate-800 p-8 rounded-2xl card-hover relative overflow-hidden group">
+                    <div class="w-14 h-14 rounded-xl bg-pink-500/10 text-pink-400 flex items-center justify-center mb-6 group-hover:bg-pink-500 group-hover:text-white transition-all">
+                        <i data-lucide="radio" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">ストリーミング＆メディア連動</h3>
+                    <p class="text-slate-400 leading-relaxed text-sm">
+                        YouTube / Instagram / Facebook公式チャンネル（@tv_ont, @tvont）と連携した大容量データ配信。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-slate-900/50 border-t border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-xs uppercase tracking-widest text-indigo-400 font-bold mb-2">About ONT & FoZoWo</h2>
+                    <h3 class="text-3xl sm:text-4xl font-bold text-white mb-6">つながりを加速させる、<br>FoZoWoの通信ネットワーク</h3>
+                    <p class="text-slate-400 leading-relaxed mb-6">
+                        ONTは、<strong>FoZoWo (fozowo.com)</strong>の架空ネットワークソリューションブランドです。
+                    </p>
+                    <p class="text-slate-400 leading-relaxed mb-8">
+                        先進的な通信テクノロジーとメディア配信プラットフォームを組み合せることで、シームレスなデジタルエコシステムを創出しています。
+                    </p>
+                </div>
+
+                <!-- Company Details Box -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-8 shadow-2xl relative">
+                    <h4 class="text-xl font-bold text-white mb-6 pb-4 border-b border-slate-800">ブランド概要</h4>
+                    <dl class="space-y-4 text-sm">
+                        <div class="grid grid-cols-3">
+                            <dt class="text-slate-400 font-medium">ネットワーク名</dt>
+                            <dd class="col-span-2 text-slate-200 font-semibold">ONT</dd>
+                        </div>
+                        <div class="grid grid-cols-3">
+                            <dt class="text-slate-400 font-medium">運営母体</dt>
+                            <dd class="col-span-2 text-slate-200 font-semibold">FoZoWo Inc.</dd>
+                        </div>
+                        <div class="grid grid-cols-3">
+                            <dt class="text-slate-400 font-medium">公式サイト</dt>
+                            <dd class="col-span-2 text-cyan-400 font-mono">fozowo.com</dd>
+                        </div>
+                        <div class="grid grid-cols-3">
+                            <dt class="text-slate-400 font-medium">事業分野</dt>
+                            <dd class="col-span-2 text-slate-200">仮想通信インフラ, 端末ネットワーク, メディア配信</dd>
+                        </div>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Media Feature Section -->
+    <section id="media" class="py-20 border-t border-slate-800/80 bg-slate-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-xs uppercase tracking-widest text-pink-400 font-bold mb-2">Official Channels</h2>
+            <p class="text-3xl font-bold text-white mb-12">ONT 公式SNSアカウント</p>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- YouTube -->
+                <a href="https://youtube.com/@tv_ont" target="_blank" rel="noopener" class="p-6 rounded-2xl bg-slate-900 border border-slate-800 hover:border-red-500/50 transition-all text-left flex items-center gap-5 group">
+                    <div class="w-14 h-14 rounded-xl bg-red-500/10 text-red-500 flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <i data-lucide="youtube" class="w-7 h-7"></i>
+                    </div>
+                    <div>
+                        <div class="text-xs text-slate-400 font-semibold uppercase">YouTube</div>
+                        <div class="text-lg font-bold text-white group-hover:text-red-400 transition-colors">@tv_ont</div>
+                        <div class="text-xs text-slate-500 mt-1">動画チャンネルを見る &rarr;</div>
+                    </div>
+                </a>
+
+                <!-- Instagram -->
+                <a href="https://instagram.com/tv_ont" target="_blank" rel="noopener" class="p-6 rounded-2xl bg-slate-900 border border-slate-800 hover:border-pink-500/50 transition-all text-left flex items-center gap-5 group">
+                    <div class="w-14 h-14 rounded-xl bg-pink-500/10 text-pink-500 flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <i data-lucide="instagram" class="w-7 h-7"></i>
+                    </div>
+                    <div>
+                        <div class="text-xs text-slate-400 font-semibold uppercase">Instagram</div>
+                        <div class="text-lg font-bold text-white group-hover:text-pink-400 transition-colors">@tv_ont</div>
+                        <div class="text-xs text-slate-500 mt-1">インスタグラムを見る &rarr;</div>
+                    </div>
+                </a>
+
+                <!-- Facebook -->
+                <a href="https://facebook.com/tvont" target="_blank" rel="noopener" class="p-6 rounded-2xl bg-slate-900 border border-slate-800 hover:border-blue-500/50 transition-all text-left flex items-center gap-5 group">
+                    <div class="w-14 h-14 rounded-xl bg-blue-500/10 text-blue-500 flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <i data-lucide="facebook" class="w-7 h-7"></i>
+                    </div>
+                    <div>
+                        <div class="text-xs text-slate-400 font-semibold uppercase">Facebook</div>
+                        <div class="text-lg font-bold text-white group-hover:text-blue-400 transition-colors">@tvont</div>
+                        <div class="text-xs text-slate-500 mt-1">フェイスブックを見る &rarr;</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 border-t border-slate-800 py-16 text-slate-400">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+                <!-- Brand Summary -->
+                <div class="md:col-span-2">
+                    <div class="flex items-center gap-3 mb-4">
+                        <img src="ont.png" alt="ONT Logo" class="h-8 w-auto object-contain" onerror="this.onerror=null; this.src='https://placehold.co/100x32/4f46e5/ffffff?text=ONT';">
+                        <span class="text-2xl font-bold text-white tracking-wider">ONT</span>
+                    </div>
+                    <p class="text-sm text-slate-400 max-w-sm mb-6 leading-relaxed">
+                        ONT is a fictional network brand under <strong>FoZoWo (fozowo.com)</strong>. Delivering high-performance network experiences and social media media integrations.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://youtube.com/@tv_ont" target="_blank" rel="noopener" class="w-10 h-10 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center hover:text-red-500 hover:border-red-500/50 transition-all">
+                            <i data-lucide="youtube" class="w-5 h-5"></i>
+                        </a>
+                        <a href="https://instagram.com/tv_ont" target="_blank" rel="noopener" class="w-10 h-10 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center hover:text-pink-500 hover:border-pink-500/50 transition-all">
+                            <i data-lucide="instagram" class="w-5 h-5"></i>
+                        </a>
+                        <a href="https://facebook.com/tvont" target="_blank" rel="noopener" class="w-10 h-10 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center hover:text-blue-500 hover:border-blue-500/50 transition-all">
+                            <i data-lucide="facebook" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Navigation Links -->
+                <div>
+                    <h4 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">メニュー</h4>
+                    <ul class="space-y-2.5 text-sm">
+                        <li><a href="#about" class="hover:text-white transition-colors">ネットワーク概要</a></li>
+                        <li><a href="#services" class="hover:text-white transition-colors">通信ソリューション</a></li>
+                        <li><a href="#media" class="hover:text-white transition-colors">公式SNS</a></li>
+                    </ul>
+                </div>
+
+                <!-- Corporate Info & Handles -->
+                <div>
+                    <h4 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">公式アカウント</h4>
+                    <ul class="space-y-2 text-sm font-mono text-slate-400">
+                        <li>YouTube: <span class="text-cyan-400">@tv_ont</span></li>
+                        <li>Instagram: <span class="text-cyan-400">@tv_ont</span></li>
+                        <li>Facebook: <span class="text-cyan-400">@tvont</span></li>
+                        <li class="pt-2 text-xs text-slate-500 font-sans">Domain: fozowo.com</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-slate-900 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-slate-500">
+                <p>&copy; ONT / FoZoWo (fozowo.com). All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Interactivity -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
